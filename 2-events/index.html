@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Vue.js</title>
+
+		<!-- ! GOOGLE FONTS -->
+		<link rel="preconnect" href="https://fonts.googleapis.com" />
+		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+
+		<!-- ! CSS STYLES -->
+		<link rel="stylesheet" href="style.css" />
+
+		<!-- ! BOOTSTRAP CSS LINK -->
+		<link
+			href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+			rel="stylesheet"
+			integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC"
+			crossorigin="anonymous"
+		/>
+
+		<!-- ! BOOTSTRAP JS LINK -->
+		<script
+			src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+			integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
+			crossorigin="anonymous"
+		></script>
+
+		<!-- ! FONT AWESOME ICONS -->
+		<link
+			rel="stylesheet"
+			href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+			integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+			crossorigin="anonymous"
+			referrerpolicy="no-referrer"
+		/>
+
+		<!-- ! VUEJS CDN -->
+		<script src="https://unpkg.com/vue@3" defer></script>
+		<script src="app.js" defer></script>
+	</head>
+	<body>
+		<div id="app">
+			<div class="container">
+				<div class="row mt-5">
+					<div class="col-lg-4 col-md-6 col-sm-12 offset-lg-4 offset-md-6 offset-sm-12 d-flex flex-column align-items-center justify-content-between">
+						<!-- <h1>Ders #1: 1:45:41</h1>
+						<a
+							href="https://youtu.be/SAIBu6YvErE?list=PL_f2F0Oyaj48Y0Uv4BTlqzK7INi92D2wp&t=6341"
+							target="_blank"
+							>Ilgili dakikaya ait link</a
+						> -->
+						<h3 class="text-center">Event</h3>
+						<input type="text" class="form-control my-3" v-model="todoText">
+						<button class="btn btn-primary btn-sm" @click="addTodo">Add Todo</button>
+						<ul class="todoList">
+							<li class="todoItem" v-for="todo in todoList" :key="todo">{{ todo }}</li>
+						</ul>
+						<p>{{ todoText }}</p>
+						<pre>{{ todoList}}</pre>
+					</div>
+				</div>
+			</div>
+		</div>
+	</body>
+</html>
