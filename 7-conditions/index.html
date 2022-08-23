@@ -46,49 +46,27 @@
 			<div class="container">
 				<div class="row my-5 mx-5">
 					<div class="col-sm-12 col-md-6 col-lg-4">
-						<h1>Use computed to class and style binding</h1>
-						<input type="text" v-model="bgColor" /><br />
-						<div class="d-flex align-items-start flex-column my-3">
-							<button
-								class="btn btn-primary btn-sm my-1"
-								@click="showBorder = !showBorder"
-							>
-								Border On / Off
-							</button>
-							<button
-								class="btn btn-danger btn-sm my-1"
-								@click="redBg = !redBg"
-							>
-								Red BG On / Off
-							</button>
-							<button
-								class="btn btn-info btn-sm my-1"
-								@click="greenBg = !greenBg"
-							>
-								Green BG On / Off
-							</button>
-							<button
-								class="btn btn-warning btn-sm my-1"
-								@click="blueBg = !blueBg"
-							>
-								Blue BG On / Off
-							</button>
-						</div>
-						<!-- <div class="box" :class="boxClasses"></div> -->
-						<!-- <div
-							class="box"
-							:class="{ border: showBorder, red: redBg, blue: blueBg, green : greenBg}"
-						></div> -->
-            <!-- <div
-              class="box"
-              :class="boxClasses"
-              :style="{ backgroundColor: bgColor }"
-            ></div> -->
-						<div
-							class="box"
-							:class="boxClasses"
-							:style="[{backgroundColor: bgColor}, {border: border}]"
-						></div>
+						<button
+							class="btn btn-primary"
+							@click="showContainer = !showContainer"
+						>
+							On / Off
+						</button>
+						<h1 v-if="showContainer">Initial</h1>
+						<h1 v-else>After</h1>
+						<br /><br /><br />
+						<h3 :class="counterBoxClasses">{{ counter }}</h3>
+						<button class="btn btn-success" @click="counter++">+</button>
+						<button class="btn btn-danger" @click="counter--">-</button>
+						<p v-if="counter > 0">Counter is positive</p>
+						<p v-else-if="counter < 0">Counter is negative</p>
+						<p v-else>Counter is zero</p>
+						
+						<hr>
+						<p v-show="counter > 0">Counter is positive</p>
+						<p v-show="counter < 0">Counter is negative</p>
+						<p v-show="counter == 0">Counter is zero</p>
+						<blockquote>v-show changes the remaining item's display property to none.</blockquote>
 					</div>
 				</div>
 			</div>
