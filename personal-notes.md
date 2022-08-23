@@ -1,9 +1,12 @@
 # Vue.js Notes
 
 ## Week 1
+
 - When we need to bind the attributes, we use ":attribute" syntax.
 - standart Vue.js structure
-  data() {
+
+```js
+	data() {
   return {
   counter: 0,
   };
@@ -19,6 +22,7 @@ computed: {
 mounted(){
 
 },
+```
 
 - v-if="condition is true" => if the condition is satisfied, this component shows up.
 - v-else => if the condition is not satisfied, this component shows up.
@@ -28,6 +32,7 @@ mounted(){
 
 ##### class binding
 
+```js
 data() {
 return {
 showBorder: false,
@@ -48,30 +53,66 @@ blue: this.blueBg,
 };
 },
 },
+```
 
 ##### style binding
 
+```html
 <div
-class="box"
-:class="boxClasses"
-:style="[{backgroundColor: bgColor}, {border: border}]"
+  class="box"
+  :class="boxClasses"
+  :style="[{backgroundColor: bgColor}, {border: border}]"
 ></div>
-- const app = Vue.createApp({
-	data() {
-		return {
-			showContainer: false,
-			counter: 0,
-		};
-	},
-	computed: {
-		counterBoxClasses() {
-			return {
-				"bg-success text-white": this.counter > 0,
-				"bg-danger text-white": this.counter < 0,
-				"bg-warning": this.counter == 0,
-			};
-		}
-	},
+```
+
+```js
+const app = Vue.createApp({
+  data() {
+    return {
+      showContainer: false,
+      counter: 0,
+    };
+  },
+  computed: {
+    counterBoxClasses() {
+      return {
+        "bg-success text-white": this.counter > 0,
+        "bg-danger text-white": this.counter < 0,
+        "bg-warning": this.counter == 0,
+      };
+    },
+  },
 });
+```
 
 - v-show="condition is true" => if the condition is satisfied, this component will be displayed. Different from v-if, v-show hides the other parts with display: none;
+
+## Week 2
+
+- props => It transfers the data or the functions from parent to child.
+
+```js
+props:{
+	itemList: {
+		type: Object,
+		required: true,
+		default: [],
+	},
+  addTodo: {
+    type: Function,
+    required: true,
+  }
+},
+```
+
+- custom events => It transfers the event from child to parent
+  @click = "deleteTodo"
+
+```js
+methods: {
+	deleteTodo() {
+		this.$emit('delete-todo-item', this.todoItem);
+	},
+},
+this.$emit(`${CustomEventName}`, data)
+```
