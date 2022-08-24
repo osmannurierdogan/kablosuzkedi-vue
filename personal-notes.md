@@ -118,6 +118,7 @@ this.$emit(`${CustomEventName}`, data)
 ```
 
 - provide & inject => they are the better versions of props and emits.
+
 ```js
 provide(){
   myObj: {
@@ -136,4 +137,26 @@ inject: {
   }
 }
 ```
+
 #### But using provide & inject can be complicated some complex projects. So that we need to use one of the state management tools such as vuex.
+
+- State => variables used in components
+
+- getters => returns a value, used as a variable. gets the data from state
+- mutations => provide a chance to change the data in state. it works synchronously
+- commit => triggers the mutations.
+- mutations => commit
+
+```js
+addNewItem(){
+  this.$store.commit("newItem", {
+    id: new Date().getTime(),
+    title: `Raf => ${new Date().getTime()}`,
+    type: "mobilya",
+  });
+}
+```
+- actions => they work asynchronously.
+- context => It contains everything which Vuex has. It is an instance of Vuex
+- actions => dispatch
+- dispatch => triggers the actions.
