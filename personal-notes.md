@@ -116,3 +116,24 @@ methods: {
 },
 this.$emit(`${CustomEventName}`, data)
 ```
+
+- provide & inject => they are the better versions of props and emits.
+```js
+provide(){
+  myObj: {
+    type: Object,
+    required: true,
+  },
+  delete: {
+    type: Function,
+    required: true,
+  },
+},
+inject: {
+  delete: {
+    type: Function,
+    required: true,
+  }
+}
+```
+#### But using provide & inject can be complicated some complex projects. So that we need to use one of the state management tools such as vuex.
