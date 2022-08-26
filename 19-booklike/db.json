@@ -1,0 +1,69 @@
+{
+  "bookmarks": [
+    {
+      "title": "Osman",
+      "url": "osman",
+      "category": "Vue.js",
+      "description": "osman",
+      "id": 1
+    },
+    {
+      "title": "a",
+      "url": "a",
+      "category": "Vue.js",
+      "description": "a",
+      "id": 2
+    },
+    {
+      "title": "a",
+      "url": "a",
+      "category": "React.js",
+      "description": "a",
+      "id": 3
+    },
+    {
+      "title": "b",
+      "url": "b",
+      "category": "Social",
+      "description": "b",
+      "id": 4
+    },
+    {
+      "title": "b",
+      "url": "b",
+      "category": "React.js",
+      "description": "b",
+      "id": 5
+    }
+  ],
+  "users": [
+    {
+      "userName": "Osman Nuri",
+      "fullName": "osman",
+      "password": "1234",
+      "id": 1
+    }
+  ],
+  "categories": [
+    {
+      "title": "Vue.js",
+      "id": 1
+    },
+    {
+      "title": "React.js",
+      "id": 2
+    },
+    {
+      "title": "Social",
+      "id": 3
+    },
+    {
+      "title": "Frontend",
+      "id": 4
+    },
+    {
+      "title": "Backend",
+      "id": 5
+    }
+  ]
+}
