@@ -1,19 +1,22 @@
 {
-  "posts": [
+  "bookmarks": [
     {
-      "id": 1,
-      "title": "json-server",
-      "author": "typicode"
-    }
-  ],
-  "comments": [
+      "id": 1661520516740,
+      "title": "GitHub",
+      "url": "https://github.com/osmannurierdogan",
+      "description": "My personal GitHub account. You can check my repositories and projects out from there..."
+    },
     {
-      "id": 1,
-      "body": "some comment",
-      "postId": 1
+      "id": 1661520709295,
+      "title": "LinkedIn",
+      "url": "https://linkedin.com/in/osmannurierdogan",
+      "description": "My LinkedIn page. You can see my experiences from there."
+    },
+    {
+      "id": 1661521406797,
+      "title": "osman",
+      "url": "osman",
+      "description": "osman"
     }
-  ],
-  "profile": {
-    "name": "typicode"
-  }
+  ]
 }

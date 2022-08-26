@@ -37,18 +37,20 @@ export default {
         .then((save_response) => {
           console.log("save_response :>> ", save_response);
         }); */
+    /* resetData() {
+      Object.keys(this.userData).foreach((key) => (this.userData[key] = null));
+    }, */
     onSave() {
       //console.log(this.userData);
-      this.$axios
-        .post("http://localhost:3000/bookmark-list", this.userData)
-        .then((saveResponse) => {
-          console.log("Save Response => ", saveResponse);
-          //this.resetData();
-          this.userData.title = null;
-          this.userData.url = null;
-          this.userData.description = null;
-          this.$router.push("/");
-        });
+      this.$appAxios.post("/bookmarks", this.userData).then((saveResponse) => {
+        console.log("Save Response => ", saveResponse);
+        //this.resetData();
+        this.userData.title = null;
+        this.userData.url = null;
+        this.userData.description = null;
+        this.userData.id = null;
+        this.$router.push({ name: "Home" });
+      });
     },
   },
 };
