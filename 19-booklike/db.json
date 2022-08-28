@@ -5,8 +5,19 @@
       "password": "9248051ca0866b0378372b965acef861abdc6d34",
       "likes": [],
       "bookmarks": [],
-      "fullName": "osman",
+      "fullName": "Osman Nuri Erdogan",
       "id": 1
+    },
+    {
+      "userName": "osiz",
+      "likes": [
+        1,
+        10
+      ],
+      "bookmarks": [],
+      "fullName": "OSIZ SMMA",
+      "password": "2b3d681c52f0726902ae8b6ba4c338fc120cedb4",
+      "id": 2
     }
   ],
   "bookmarks": [
@@ -146,12 +157,12 @@
       "id": 17
     },
     {
-      "title": "dESADAS",
-      "url": "ASDASD",
-      "categoryId": 3,
-      "description": "ASDASD",
+      "title": "Selman Kahya Vibely",
+      "url": "https://app.vibely.io/selmankahya",
+      "categoryId": 6,
+      "description": "Selman Kahya's Official Vibely.io community link. You can find dozens of useful information from there.",
       "userId": 1,
-      "created_at": "2021-12-27T15:12:55.874Z",
+      "created_at": "2022-08-28T12:34:12.632Z",
       "id": 18
     }
   ],

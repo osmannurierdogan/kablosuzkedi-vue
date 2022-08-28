@@ -6,8 +6,9 @@ div.login_register_container
   input.input.mb-3(v-model="this.userData.password" type='password', placeholder='Şifre')
   button.default-button(@click="onSave") Register
   span.text-center.mt-3.text-sm
-    | Already have a member?
-    RouterLink(:to="{name: 'Login'}").ml-1.text-red-900(href='#', class='hover:text-black')  Log in
+    span Already have a member? 
+    RouterLink.ml-1.text-red-900(:to="{ name: 'Login' }" class='hover:text-black')  Log in
+    //a.ml-1.text-red-900(href="/login" class='hover:text-black')  Log in
 </template>
 <script>
 import { mapGetters } from "vuex";
@@ -18,40 +19,36 @@ export default {
     return {
       userData: {
         userName: null,
-        password: null,
         likes: [],
         bookmarks: [],
       },
     };
   },
+  computed: {
+    ...mapGetters({
+      getSaltKey: "_getSaltKey",
+    }),
+  },
   methods: {
-    /* hashPassword(password, key, cycleNumber) {
-      let newPassword;
-      for (let i = 0; i < cycleNumber; i++) {
-        newPassword = CryptoJs.AES.encrypt(password, key).toString();
-      }
-      return newPassword;
-    }, */
+    hashPassword(password, key) {
+      return CryptoJs.HmacSHA1(password, key).toString();
+    },
     onSave() {
-      /* const password = this.hashPassword(
-        this.userData.password,
-        this.getSaltKey,
-        //eslint-disable-next-line
-        10,
-      ); */
-      const password = CryptoJs.HmacSHA1(
+      const password = this.hashPassword(
         this.userData.password,
         //eslint-disable-next-line
         this.getSaltKey,
-      ).toString();
+        //this.$store.getters._getSaltKey,
+      );
+      /* const password = CryptoJs.HmacSHA1(
+        this.userData.password,
+        //eslint-disable-next-line
+        this.getSaltKey,
+      ).toString(); */
+      console.log("password :>> ", password);
       this.$appAxios.post("/users", { ...this.userData, password }).then(() => {
         this.$router.push({ name: "Home" });
       });
-    },
-    computed: {
-      ...mapGetters({
-        getSaltKey: "_getSaltKey",
-      }),
     },
   },
 };

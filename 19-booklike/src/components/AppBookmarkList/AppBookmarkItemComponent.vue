@@ -1,13 +1,13 @@
 <template lang="pug">
 div.bg-white.flex.flex-col.flex-wrap.gap-x-3.rounded-md.shadow-sm
   div.p-3
-    a.font-bold.text-l.mb-1.text-gray-600.text-center(href='#', class='hover:text-black') {{ bookmarkItem.title }}
+    a.font-bold.text-l.mb-1.text-gray-600.text-center(href='#', class='hover:text-black') {{ this.bookmarkItem.title || "-" }}
     div.flex.items-center.justify-center.mt-2.gap-x-1
-      button.flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-indigo-300')
+      button(@click="saveUserLike").flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-indigo-300' :class="{'like-item-active': alreadyLiked}")
         svg.fill-current(xmlns='http://www.w3.org/2000/svg', class='group-hover:text-white', height='24', viewBox='0 0 24 24', width='24')
           path(d='M0 0h24v24H0V0zm0 0h24v24H0V0z', fill='none')
           path(d='M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2zM9 9l4.34-4.34L12 10h9v2l-3 7H9V9zM1 9h4v12H1z')
-      button.flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-black')
+      button(@click="saveUserBookmark").like-item-active.flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-black' :class="{'bookmark-item-active': alreadyBookmarked}")
         svg.fill-current(xmlns='http://www.w3.org/2000/svg', class='group-hover:text-white', enable-background='new 0 0 24 24', viewBox='0 0 24 24', width='24', height='24')
           rect(fill='none')
           path(d='M17,11v6.97l-5-2.14l-5,2.14V5h6V3H7C5.9,3,5,3.9,5,5v16l7-3l7,3V11H17z M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z')
@@ -22,18 +22,59 @@ div.bg-white.flex.flex-col.flex-wrap.gap-x-3.rounded-md.shadow-sm
             | laborum consequuntur explicabo dolor, odit eligendi
             | voluptate illum itaque accusantium, cumque tenetur
             | cupiditate illo libero dolores!
-          p.absolute.w-60.h-40.right-0.top-full.overflow-y-scroll.bg-white.invisible.rounded-md.shadow-lg.p-3.text-left.border-gray-300(class='!z-10 group-focus-within:visible group-hover:visible border-[1px]') {{ bookmarkItem.description }}
+          p.absolute.w-60.h-40.right-0.top-full.overflow-y-scroll.bg-white.invisible.rounded-md.shadow-lg.p-3.text-left.border-gray-300(class='!z-10 group-focus-within:visible group-hover:visible border-[1px]') {{ this.bookmarkItem.description }}
     div.text-xs.text-gray-400.mt-2.flex.justify-between
-      a(href='#', class='hover:text-black')  Osman Nuri  
-      span 14 Mart
+      a(href='#', class='hover:text-black')  {{ userName }}  
+      span {{ this.bookmarkItem.created_at }}
   div.bg-red-200.p-1.text-red-900.text-center.text-sm
-    | {{ this.bookmarkItem.category}}
+    | {{ categoryName }}
+
+    span {{ getUserLikes }}
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "AppBookmarkItemComponent",
   props: {
     bookmarkItem: Object,
+  },
+  computed: {
+    categoryName() {
+      return this.bookmarkItem?.category?.name || "Default Category";
+    },
+    userName() {
+      return this.bookmarkItem?.user?.fullName || "Default Name";
+    },
+    /* alreadyLiked() {
+      console.log("this.getUserLikes :>> ", this.getUserLikes);
+      return this.getUserLikes.includes(this.bookmarkItem.id);
+    },
+    alreadyBookmarked() {
+      return this.getUserBookmarks.includes(this.bookmarkItem.id);
+    }, */
+    ...mapGetters({
+      getCurrentUser: "_getCurrentUser",
+      getUserLikes: "_getUserLikes",
+      getUserBookmarks: "_getUserBookmarks",
+    }),
+  },
+  methods: {
+    saveUserLike() {
+      const likes = [...this.getUserLikes, this.bookmarkItem.id];
+      this.$appAxios
+        .patch(`/users/${this.getCurrentUser?.id}`, { likes })
+        .then(() => {
+          this.$store.commit("_updateLikes", this.bookmarkItem.id);
+        });
+    },
+    saveUserBookmark() {
+      const bookmarks = [...this.getUserBookmarks, this.bookmarkItem.id];
+      this.$appAxios
+        .patch(`/users/${this.getCurrentUser?.id}`, { bookmarks })
+        .then(() => {
+          this.$store.commit("_updateBookmarks", this.bookmarkItem.id);
+        });
+    },
   },
 };
 </script>

@@ -2,8 +2,8 @@
 //h3 Bookmark List Component
 div.flex.flex-row
   div
-    div.p-2.grid.grid-cols-8.gap-4
-      AppBookmarkItemComponent(v-for="bookmark in bookmarks" :key="bookmark.id" :bookmarkItem="bookmark")
+    div(class="p-2 grid 2xl:grid-cols-8 xl:grid-cols-6 lg:grid-cols-5 md:grid-cols-4 sm:grid-cols-2 gap-4")
+      AppBookmarkItemComponent(v-for="bookmark in bookmarkList" :key="bookmark.id" :bookmarkItem="bookmark")
 </template>
 <script>
 import AppBookmarkItemComponent from "./AppBookmarkItemComponent.vue";
@@ -12,16 +12,12 @@ export default {
   components: {
     AppBookmarkItemComponent,
   },
-  data() {
-    return {
-      bookmarks: [],
-    };
-  },
-  created() {
-    this.$appAxios.get("/bookmarks").then((response) => {
-      //console.log("response :>> ", response);
-      this.bookmarks = response.data;
-    });
+  props: {
+    bookmarkList: {
+      type: Array,
+      required: true,
+      default: () => [],
+    },
   },
 };
 </script>

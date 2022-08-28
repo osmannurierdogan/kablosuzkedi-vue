@@ -5,8 +5,9 @@ div.login_register_container
   input.input.mb-3(v-model="userData.password" type='password', placeholder='Şifre')
   button.default-button(@click="onSubmit") Giri&scedil; yap
   span.text-center.mt-3.text-sm
-    | &Uuml;ye de&gbreve;ilim,
-    a.text-red-900(href='#', class='hover:text-black') &Uuml;ye olmak istiyorum!
+    span &Uuml;ye de&gbreve;ilim,
+    RouterLink.text-red-900(:to="{ name: 'Register' }", class='hover:text-black') &Uuml;ye olmak istiyorum!
+    //a.text-red-900(href="/register" class='hover:text-black') &Uuml;ye olmak istiyorum!
 </template>
 <script>
 import CryptoJs from "crypto-js";
@@ -22,6 +23,11 @@ export default {
       },
     };
   },
+  computed: {
+    ...mapGetters({
+      getSaltKey: "_getSaltKey",
+    }),
+  },
   methods: {
     onSubmit() {
       const userName = this.userData.userName;
@@ -33,17 +39,15 @@ export default {
       this.$appAxios
         .get(`/users?userName=${userName}&password=${password}`)
         .then((response) => {
-          response?.data?.length > 0
-            ? this.$store.commit("_setUser", response.data[0]) &
-              this.$router.push({ name: "Home" })
-            : alert("No user found");
+          //console.log("response.data[0] :>> ", response.data[0]);
+          if (response?.data?.length > 0) {
+            this.$store.commit("_setUser", response.data[0]);
+            this.$router.push({ name: "Home" });
+          } else {
+            alert("No user found");
+          }
         });
     },
-  },
-  computed: {
-    ...mapGetters({
-      getSaltKey: "_getSaltKey",
-    }),
   },
 };
 </script>
