@@ -1,69 +1,192 @@
 {
+  "users": [
+    {
+      "userName": "osman",
+      "password": "9248051ca0866b0378372b965acef861abdc6d34",
+      "likes": [],
+      "bookmarks": [],
+      "fullName": "osman",
+      "id": 1
+    }
+  ],
   "bookmarks": [
     {
-      "title": "Osman",
-      "url": "osman",
-      "category": "Vue.js",
-      "description": "osman",
+      "title": "Vue JS Bootcamp",
+      "url": "https://eduflow.kablosuzkedi.com",
+      "categoryId": 7,
+      "description": "kablosuzkedi Vue.js Bootcamp ",
+      "userId": 1,
+      "created_at": "2021-10-11T13:33:31.971Z",
       "id": 1
     },
     {
-      "title": "a",
-      "url": "a",
-      "category": "Vue.js",
-      "description": "a",
+      "title": "Front-End Mentor",
+      "url": "https://www.frontendmentor.io/challenges?sort=difficulty|asc",
+      "categoryId": 3,
+      "description": "Frontend Mentor UI Challenges Improve your front-end coding skills by building real projects",
+      "userId": 1,
+      "created_at": "2021-10-11T13:36:44.316Z",
       "id": 2
     },
     {
-      "title": "a",
-      "url": "a",
-      "category": "React.js",
-      "description": "a",
+      "title": "Personal Website",
+      "url": "https://osmannurierdogan.site",
+      "categoryId": 7,
+      "description": "Osman Nuri Erdogan Personal Website",
+      "userId": 1,
+      "created_at": "2021-10-11T13:52:48.057Z",
       "id": 3
     },
     {
-      "title": "b",
-      "url": "b",
-      "category": "Social",
-      "description": "b",
+      "title": "Daily UI",
+      "url": "https://www.dailyui.co/",
+      "categoryId": 3,
+      "description": "Become a Better Designer in 100 Days ",
+      "userId": 1,
+      "created_at": "2021-10-11T14:03:39.736Z",
       "id": 4
     },
     {
-      "title": "b",
-      "url": "b",
-      "category": "React.js",
-      "description": "b",
-      "id": 5
-    }
-  ],
-  "users": [
+      "title": "Front-End Challenges",
+      "url": "https://css-tricks.com/front-end-challenges/",
+      "categoryId": 3,
+      "description": "Multiple Front-End Challenges",
+      "userId": 1,
+      "created_at": "2021-10-11T14:05:10.129Z",
+      "id": 7
+    },
     {
-      "userName": "Osman Nuri",
-      "fullName": "osman",
-      "password": "1234",
-      "id": 1
+      "title": "Front-End Practice",
+      "url": "https://www.frontendpractice.com/",
+      "categoryId": 3,
+      "description": "Become a better frontend developer. Take your frontend skills to the next level by recreating real websites.",
+      "userId": 2,
+      "created_at": "2021-10-11T18:55:16.983Z",
+      "id": 8
+    },
+    {
+      "title": "Code Wars",
+      "url": "https://www.codewars.com/",
+      "categoryId": 4,
+      "description": "Sharpen your skills\nChallenge yourself on kata, which are small coding exercises. Each kata is crafted by the community to help you strengthen different coding skills. Master your current language of choice, or expand your understanding of a new one.",
+      "userId": 2,
+      "created_at": "2021-10-12T17:46:22.139Z",
+      "id": 9
+    },
+    {
+      "title": "CodeSandbox",
+      "url": "https://codesandbox.io/",
+      "categoryId": 8,
+      "description": "Where teams build faster, together\nCreate, share, and get feedback with collaborative sandboxes for rapid web development.",
+      "userId": 1,
+      "created_at": "2021-10-12T17:48:27.557Z",
+      "id": 10
+    },
+    {
+      "title": "Marvel Movies",
+      "url": "https://www.marvel.com/movies",
+      "categoryId": 6,
+      "description": "Journey into the cosmic depths of the mighty Marvel Cinematic Universe!",
+      "userId": 1,
+      "created_at": "2021-10-12T18:28:12.694Z",
+      "id": 11
+    },
+    {
+      "title": "Kablosuz Beyin",
+      "url": "https://kablosuzbeyin.com",
+      "categoryId": 6,
+      "description": "Kablosuz Beyin Topluluğu’na\nHoş geldiniz!\nKablosuz Beyin pandemi döneminde kurulmuş olup, insanların sosyalleşmelerini, verimli vakit geçirebilmelerini ve ilgi alanlarına göre kendilerini geliştirebilmesini sağlayan sosyal bir topluluktur.",
+      "userId": 1,
+      "created_at": "2021-10-12T18:29:39.712Z",
+      "id": 12
+    },
+    {
+      "title": "React JS Docs",
+      "url": "https://reactjs.org/",
+      "categoryId": 2,
+      "description": "The official React.js documentation.",
+      "userId": 1,
+      "created_at": "2021-10-20T07:31:02.022Z",
+      "id": 13
+    },
+    {
+      "title": "Vue.js 3 Docs",
+      "url": "https://v3.vuejs.org/",
+      "categoryId": 1,
+      "description": "The official Vue.js 3 documentation.",
+      "userId": 1,
+      "created_at": "2021-10-20T07:33:34.892Z",
+      "id": 14
+    },
+    {
+      "title": "Google Cloud Docs",
+      "url": "https://cloud.google.com/docs",
+      "categoryId": 5,
+      "description": "The Official Google Cloud Documentation.",
+      "userId": 1,
+      "created_at": "2021-10-20T07:34:36.697Z",
+      "id": 15
+    },
+    {
+      "title": "Netlify Cloud ",
+      "url": "https://app.netlify.com/signup?_ga=2.182273123.530833883.1634747414-1194154066.1634747414",
+      "categoryId": 5,
+      "description": "“We’ve moved all of our static sites and apps to Netlify. It’s an indispensable tool in our toolchain. Every time we are able to dream up a new feature we need from a static host, Netlify has it.”\n\nKYLE MACDONALD, CTO, CARROT CREATIVE",
+      "userId": 2,
+      "created_at": "2021-10-20T16:30:55.555Z",
+      "id": 16
+    },
+    {
+      "title": "Front-End Loops",
+      "url": "https://frontloops.io/",
+      "categoryId": 3,
+      "description": "Frontloops => Power up your frontend development chops with real-world challenges. Improve your HTML and CSS skills by solving 30 web interface challenges, then learn from the reference solutions and provided advice. Improve your javascript skills by building 30 interactive widgets from real products, then compare with provided solutions and hints.",
+      "userId": 2,
+      "created_at": "2021-10-11T18:55:16.983Z",
+      "id": 17
+    },
+    {
+      "title": "dESADAS",
+      "url": "ASDASD",
+      "categoryId": 3,
+      "description": "ASDASD",
+      "userId": 1,
+      "created_at": "2021-12-27T15:12:55.874Z",
+      "id": 18
     }
   ],
   "categories": [
     {
-      "title": "Vue.js",
+      "name": "Vue.js",
       "id": 1
     },
     {
-      "title": "React.js",
+      "name": "React.js",
       "id": 2
     },
     {
-      "title": "Social",
+      "name": "Frontend",
       "id": 3
     },
     {
-      "title": "Frontend",
+      "name": "Backend",
       "id": 4
     },
     {
-      "title": "Backend",
+      "name": "Cloud",
       "id": 5
+    },
+    {
+      "name": "Social Life",
+      "id": 6
+    },
+    {
+      "name": "Education",
+      "id": 7
+    },
+    {
+      "name": "Programming Tools",
+      "id": 8
     }
   ]
 }

@@ -1,22 +1,22 @@
 <template lang="pug">
 div.bg-white.border-gray-200.h-16.w-full.flex.items-center.justify-center(class='border-b-[1px]')
   nav.flex.w-full.px-2
-    .flex.text-xl
+    div.flex.text-xl
       svg.fill-current.mr-2(xmlns='http://www.w3.org/2000/svg', height='36', viewBox='0 0 24 24', width='36')
         path(d='M0 0h24v24H0V0z', fill='none')
         path(d='M4 6H2v14c0 1.1.9 2 2 2h14v-2H4V6zm16-4H8c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-3 2v5l-1-.75L15 9V4h2zm3 12H8V4h5v9l3-2.25L19 13V4h1v12z')
       span BookLike
-    .hidden
+    //div.hidden
       a.mr-3.navbar-item(href='#') Home
       a.mr-3.navbar-item(href='#') My Posts
       a.navbar-item(href='#') Favorites
-    .ml-auto.flex.items-center
+    div.ml-auto.flex.items-center(v-if="isAuthenticated")
       RouterLink(:to="{name: 'NewBookmark'}").flex.bg-gray-700.text-white.px-3.py-1.rounded-sm.text-sm.items-center.mr-2(class='hover:bg-black')
         svg.fill-current(xmlns='http://www.w3.org/2000/svg', height='16', viewBox='0 0 24 24', width='16')
           path(d='M0 0h24v24H0V0z', fill='none')
           path(d='M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z')
         span New
-      .relative.group
+      div.relative.group
         button.w-8.h-8.flex.items-center.justify-center.rounded-md.transition-colors.duration-500(class='hover:bg-gray-200 group-focus-within:bg-gray-300')
           svg.fill-current(xmlns='http://www.w3.org/2000/svg', height='24', viewBox='0 0 24 24', width='24')
             path(d='M0 0h24v24H0V0z', fill='none')
@@ -32,7 +32,7 @@ div.bg-white.border-gray-200.h-16.w-full.flex.items-center.justify-center(class=
               path(d='M0 0h24v24H0V0z', fill='none')
               path(d='M15 7v12.97l-4.21-1.81-.79-.34-.79.34L5 19.97V7h10m4-6H8.99C7.89 1 7 1.9 7 3h10c1.1 0 2 .9 2 2v13l2 1V3c0-1.1-.9-2-2-2zm-4 4H5c-1.1 0-2 .9-2 2v16l7-3 7 3V7c0-1.1-.9-2-2-2z')
             span Favorites
-          a.menu-item(href='#')
+          a.menu-item(href='#')(@click="onLogout")
             svg.fill-current.mr-1(xmlns='http://www.w3.org/2000/svg', enable-background='new 0 0 24 24', height='24', viewBox='0 0 24 24', width='24')
               g
                 path(d='M0,0h24v24H0V0z', fill='none')
@@ -41,7 +41,19 @@ div.bg-white.border-gray-200.h-16.w-full.flex.items-center.justify-center(class=
             span Logout
 </template>
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "HeaderComponent",
+  methods: {
+    onLogout() {
+      this.$store.commit("_logoutUser");
+      this.$router.push({ name: "Login" });
+    },
+  },
+  computed: {
+    ...mapGetters({
+      isAuthenticated: "_isAuthenticated",
+    }),
+  },
 };
 </script>
