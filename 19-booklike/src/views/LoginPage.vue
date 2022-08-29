@@ -39,7 +39,7 @@ export default {
       this.$appAxios
         .get(`/users?userName=${userName}&password=${password}`)
         .then((response) => {
-          //console.log("response.data[0] :>> ", response.data[0]);
+          console.log("response :>> ", response);
           if (response?.data?.length > 0) {
             this.$store.commit("_setUser", response.data[0]);
             this.$router.push({ name: "Home" });

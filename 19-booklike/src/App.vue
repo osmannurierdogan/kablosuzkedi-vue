@@ -13,6 +13,16 @@ div
   //RouterLink(to="/favorites" active-clas="router-link-exact-active") Favorites
   RouterView
 </template>
+<script>
+export default {
+  mounted() {
+    this.$socket.on("NEW_BOOKMARK_ADDED");
+    console.log("NEW_BOOKMARK_ADDED :>> ", () => {
+      console.log("calistiasdasdasdasdsa");
+    });
+  },
+};
+</script>
 
 <style lang="scss">
 #app {

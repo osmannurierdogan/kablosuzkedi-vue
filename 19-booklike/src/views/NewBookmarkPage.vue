@@ -34,17 +34,16 @@ export default {
         userId: this.getCurrentUser?.id,
         created_at: new Date(),
       };
-      this.$appAxios.post("/bookmarks", bookmarkUpdatedData).then(() => {
-        Object.keys(this.newBookmarkData)?.forEach(
-          (field) => (this.newBookmarkData[field] = null),
-        );
-        /* this.newBookmarkData.title = null;
-        this.newBookmarkData.url = null;
-        this.newBookmarkData.categoryId = null;
-        this.newBookmarkData.description = null;
-        this.newBookmarkData.userId = null; */
-        this.$router.push({ name: "Home" });
-      });
+      this.$appAxios
+        .post("/bookmarks", bookmarkUpdatedData)
+        .then((saveBookmarkResponse) => {
+          Object.keys(this.newBookmarkData)?.forEach(
+            (field) => (this.newBookmarkData[field] = null),
+          );
+          console.log("saveBookmarkResponse :>> ", saveBookmarkResponse);
+          this.$socket.emit("NEW_BOOKMARK_EVENT", saveBookmarkResponse.data);
+          this.$router.push({ name: "Home" });
+        });
     },
   },
   computed: {

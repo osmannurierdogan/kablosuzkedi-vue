@@ -2,10 +2,12 @@
 HeaderComponent
 div.flex.flex-row
   AccountSideBarComponent
-  Component(:is="$route.meta.componentName" :bookmarkList="getBookmarkList" v-if="getBookmarkList.length > 0")
+  //Component(:is="$route.meta.componentName" :bookmarkList="getBookmarkList" v-if="getBookmarkList.length > 0")
   //AppBookmarkListComponent
   //AppBookmarkListComponent(:bookmarkList="bookmarkList" v-if="bookmarkList.length > 0")
-  div(v-else) There is no bookmark
+  //div(v-else) There is no bookmark
+  div.socket  
+    input(type="text" @keydown.enter="SEND_MESSAGE")
   //div.account_container.mx-auto.flex.flex-col(class='w-1/4')
     h3.text-2xl.text-center.mb-3 Hesab&imath;m
     input.input.mb-3(type='text', placeholder='Tam Ad')
@@ -26,6 +28,7 @@ export default {
   data() {
     return {
       bookmarkList: [],
+      socket: {},
     };
   },
   computed: {
@@ -47,5 +50,17 @@ export default {
         this.$store.commit("_setBookmarkList", response?.data || []);
       });
   },
+  /* mounted() {
+    this.$socket.on("WELCOME_MESSAGE", this.WELCOME_MESSAGE);
+  },
+  methods: {
+    WELCOME_MESSAGE(data) {
+      console.log(data);
+    },
+    SEND_MESSAGE(e) {
+      //console.log(e.target.value);
+      this.$socket.emit("SEND_MESSAGE", e.target.value);
+    },
+  }, */
 };
 </script>
