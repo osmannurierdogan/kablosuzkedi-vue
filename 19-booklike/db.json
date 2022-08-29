@@ -3,37 +3,43 @@
     {
       "userName": "osman",
       "password": "9248051ca0866b0378372b965acef861abdc6d34",
-      "bookmarks": [
-        2,
-        1,
-        9,
-        10,
-        11,
-        16,
-        17,
-        3
-      ],
-      "likes": [
-        8
-      ],
       "fullName": "Osman Nuri Erdogan",
       "id": 1
     },
     {
       "userName": "osiz",
-      "likes": [
-        15,
-        16,
-        17
-      ],
-      "bookmarks": [
-        4,
-        7,
-        18
-      ],
       "fullName": "OSIZ SMMA",
       "password": "2b3d681c52f0726902ae8b6ba4c338fc120cedb4",
       "id": 2
+    }
+  ],
+  "user_likes": [
+    {
+      "userId": 1,
+      "bookmarkId": 3,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "bookmarkId": 1,
+      "id": 2
+    }
+  ],
+  "user_bookmarks": [
+    {
+      "userId": 1,
+      "bookmarkId": 9,
+      "id": 1
+    },
+    {
+      "userId": 1,
+      "bookmarkId": 4,
+      "id": 2
+    },
+    {
+      "userId": 1,
+      "bookmarkId": 7,
+      "id": 3
     }
   ],
   "bookmarks": [

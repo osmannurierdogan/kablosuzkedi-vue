@@ -3,11 +3,11 @@ div.bg-white.flex.flex-col.flex-wrap.gap-x-3.rounded-md.shadow-sm
   div.p-3
     a.font-bold.text-l.mb-1.text-gray-600.text-center(href='#', class='hover:text-black') {{ this.bookmarkItem.title || "-" }}
     div.flex.items-center.justify-center.mt-2.gap-x-1
-      button(@click="saveUserLike").flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-indigo-300' :class="{ 'like-item-active': alreadyLiked }")
+      button(@click="saveUserLike" :class="{ 'like-item-active': alreadyLiked }").flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-indigo-300')
         svg.fill-current(xmlns='http://www.w3.org/2000/svg', class='group-hover:text-white', height='24', viewBox='0 0 24 24', width='24')
           path(d='M0 0h24v24H0V0zm0 0h24v24H0V0z', fill='none')
           path(d='M9 21h9c.83 0 1.54-.5 1.84-1.22l3.02-7.05c.09-.23.14-.47.14-.73v-2c0-1.1-.9-2-2-2h-6.31l.95-4.57.03-.32c0-.41-.17-.79-.44-1.06L14.17 1 7.58 7.59C7.22 7.95 7 8.45 7 9v10c0 1.1.9 2 2 2zM9 9l4.34-4.34L12 10h9v2l-3 7H9V9zM1 9h4v12H1z')
-      button(@click="saveUserBookmark").flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-black' :class="{ 'bookmark-item-active': alreadyBookmarked }")
+      button(:class="{ 'bookmark-item-active': alreadyBookmarked }" @click="saveUserBookmark").flex-shrink-0.w-10.h-10.p-2.flex.rounded-md.group.justify-center.items-center(class='hover:bg-black')
         svg.fill-current(xmlns='http://www.w3.org/2000/svg', class='group-hover:text-white', enable-background='new 0 0 24 24', viewBox='0 0 24 24', width='24', height='24')
           rect(fill='none')
           path(d='M17,11v6.97l-5-2.14l-5,2.14V5h6V3H7C5.9,3,5,3.9,5,5v16l7-3l7,3V11H17z M21,7h-2v2h-2V7h-2V5h2V3h2v2h2V7z')
@@ -47,17 +47,35 @@ export default {
       getUserBookmarks: "_getUserBookmarks",
     }),
     categoryName() {
-      return this.bookmarkItem?.category?.name || "Default Category";
+      return this.bookmarkItem?.category?.name || "-";
     },
     userName() {
-      return this.bookmarkItem?.user?.fullName || "Default Name";
+      return this.bookmarkItem?.user?.fullName || "-";
     },
     alreadyLiked() {
+      return Boolean(this.findLikedItem);
+    },
+    alreadyBookmarked() {
+      return Boolean(this.findBookmarkedItem);
+    },
+    findBookmarkedItem() {
+      return this.getUserBookmarks?.find(
+        //eslint-disable-next-line
+        (b) => b.bookmarkId === this.bookmarkItem.id,
+      );
+    },
+    findLikedItem() {
+      return this.getUserLikes?.find(
+        //eslint-disable-next-line
+        (b) => b.bookmarkId === this.bookmarkItem.id,
+      );
+    },
+    /* alreadyLiked() {
       return this.getUserLikes.indexOf(this.bookmarkItem.id) > -1;
     },
     alreadyBookmarked() {
       return this.getUserBookmarks.indexOf(this.bookmarkItem.id) > -1;
-    },
+    }, */
   },
   /* created() {
     console.log("this.getUserLikes :>> ", this.getUserLikes);
@@ -65,6 +83,50 @@ export default {
   }, */
   methods: {
     saveUserLike() {
+      this.$appAxios({
+        url: this.alreadyLiked
+          ? `/user_likes/${this.bookmarkItem.id}`
+          : "/user_likes",
+        method: this.alreadyLiked ? "DELETE" : "POST",
+        data: {
+          userId: this.getCurrentUser.id,
+          bookmarkId: this.bookmarkItem.id,
+        },
+      }).then(() => {
+        //console.log("saveUserLikeResonse :>> ", saveUserLikeResonse);
+        let likes = [...this.getUserLikes];
+        if (!this.alreadyLiked) {
+          likes = [...likes, this.bookmarkItem.id];
+        } else {
+          likes = likes.filter((l) => l.id !== this.bookmarkItem.id);
+        }
+        console.log("likes :>> ", likes);
+        this.$store.commit("_setUserLikes", likes);
+      });
+    },
+    saveUserBookmark() {
+      this.$appAxios({
+        url: this.alreadyBookmarked
+          ? `/user_bookmarks/${this.bookmarkItem.id}`
+          : "/user_bookmarks",
+        method: this.alreadyBookmarked ? "DELETE" : "POST",
+        data: {
+          userId: this.getCurrentUser.id,
+          bookmarkId: this.bookmarkItem.id,
+        },
+      }).then(() => {
+        //console.log("saveUserBookmarkResponse :>> ", saveUserBookmarkResponse);
+        let bookmarks = [...this.getUserBookmarks];
+        if (!this.alreadyBookmarked) {
+          bookmarks = [...bookmarks, this.bookmarkItem.id];
+        } else {
+          bookmarks = bookmarks.filter((b) => b.id !== this.bookmarkItem.id);
+        }
+        console.log("bookmarks :>> ", bookmarks);
+        this.$store.commit("_setUserBookmarks", bookmarks);
+      });
+    },
+    /* saveUserLike() {
       let likes = [...this.getUserLikes];
       if (!this.alreadyLiked) {
         likes = [...likes, this.bookmarkItem.id];
@@ -89,7 +151,7 @@ export default {
         .then(() => {
           this.$store.commit("_updateBookmarks", bookmarks);
         });
-    },
+    }, */
   },
 };
 </script>

@@ -21,6 +21,28 @@ export default {
     }),
   },
   created() {
+    this.fetchData();
+  },
+  methods: {
+    fetchData() {
+      this.$appAxios
+        .get("/bookmarks?_expand=category&_expand=user")
+        .then((response) => {
+          this.$store.commit("_setBookmarkList", response.data);
+        });
+      this.$appAxios
+        .get("/user_bookmarks/?_expand=bookmark&_expand=user")
+        .then((userBookmarksResponse) => {
+          this.$store.commit("_setUserBookmarks", userBookmarksResponse.data);
+        });
+      this.$appAxios
+        .get("/user_likes/?_expand=bookmark&_expand=user")
+        .then((userLikesResponse) => {
+          this.$store.commit("_setUserLikes", userLikesResponse.data);
+        });
+    },
+  },
+  /* created() {
     this.$appAxios
       .get("/bookmarks?_expand=category&_expand=user")
       .then((response) => {
@@ -29,7 +51,7 @@ export default {
         //console.log("response :>> ", response);
         this.$store.commit("_setBookmarkList", response?.data || []);
       });
-  },
+  }, */
   /* methods: {
     updateStoreBookmarkList(categoryId) {
       const url = categoryId

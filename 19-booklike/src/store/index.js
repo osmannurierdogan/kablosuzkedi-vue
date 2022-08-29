@@ -10,6 +10,8 @@ export default createStore({
     user: null,
     saltKey: "booklike123!456?#",
     bookmarkList: [],
+    userLikes: [],
+    userBookmarks: [],
   },
   mutations: {
     _setUser(state, user) {
@@ -35,6 +37,12 @@ export default createStore({
     _updateBookmarks(state, bookmarks) {
       state.user.bookmarks = bookmarks;
     },
+    _setUserLikes(state, userLikes) {
+      state.userLikes = userLikes;
+    },
+    _setUserBookmarks(state, userBookmarks) {
+      state.userBookmarks = userBookmarks;
+    },
   },
   getters: {
     _isAuthenticated(state) {
@@ -55,11 +63,17 @@ export default createStore({
       return state.bookmarkList;
     },
     _getUserLikes(state) {
+      return state?.userLikes || [];
+    },
+    _getUserBookmarks(state) {
+      return state?.userBookmarks || [];
+    },
+    /* _getUserLikes(state) {
       return state.user?.likes || [];
     },
     _getUserBookmarks(state) {
       return state.user?.bookmarks || [];
-    },
+    }, */
   },
   plugins: [
     createPersistedState({
