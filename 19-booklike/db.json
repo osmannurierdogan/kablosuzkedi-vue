@@ -3,18 +3,34 @@
     {
       "userName": "osman",
       "password": "9248051ca0866b0378372b965acef861abdc6d34",
-      "likes": [],
-      "bookmarks": [],
+      "bookmarks": [
+        2,
+        1,
+        9,
+        10,
+        11,
+        16,
+        17,
+        3
+      ],
+      "likes": [
+        8
+      ],
       "fullName": "Osman Nuri Erdogan",
       "id": 1
     },
     {
       "userName": "osiz",
       "likes": [
-        1,
-        10
+        15,
+        16,
+        17
       ],
-      "bookmarks": [],
+      "bookmarks": [
+        4,
+        7,
+        18
+      ],
       "fullName": "OSIZ SMMA",
       "password": "2b3d681c52f0726902ae8b6ba4c338fc120cedb4",
       "id": 2

@@ -9,9 +9,6 @@ export default createStore({
   state: {
     user: null,
     saltKey: "booklike123!456?#",
-    /* bookmarkList:
-      appAxios.get("/bookmarks?_expand=category&_expand=user").then().data ||
-      [], */
     bookmarkList: [],
   },
   mutations: {
@@ -35,6 +32,9 @@ export default createStore({
     _updateLikes(state, likes) {
       state.user.likes = likes;
     },
+    _updateBookmarks(state, bookmarks) {
+      state.user.bookmarks = bookmarks;
+    },
   },
   getters: {
     _isAuthenticated(state) {
@@ -53,13 +53,6 @@ export default createStore({
     },
     _getCategoryAndUserData(state) {
       return state.bookmarkList;
-      /* appAxios
-        .get("/bookmarks?_expand=category&_expand=user")
-        .then((response) => {
-          //console.log("response :>> ", response);
-          state.bookmarkList = response.data;
-          //console.log("response :>> ", response);
-        }); */
     },
     _getUserLikes(state) {
       return state.user?.likes || [];

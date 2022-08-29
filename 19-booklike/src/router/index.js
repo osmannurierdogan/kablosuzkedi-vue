@@ -3,11 +3,11 @@ import HomePage from "../views/HomePage.vue";
 import LoginPage from "../views/LoginPage.vue";
 import RegisterPage from "../views/RegisterPage.vue";
 import AccountPage from "../views/AccountPage.vue";
-import FavoritesPage from "../views/FavoritesPage.vue";
+//import FavoritesPage from "../views/FavoritesPage.vue";
 import NewBookmarkPage from "../views/NewBookmarkPage.vue";
 import store from "../store";
 
-const routes = [
+/* const routes = [
   {
     path: "/",
     name: "Home",
@@ -32,6 +32,57 @@ const routes = [
     path: "/favorites",
     name: "Favorites",
     component: FavoritesPage,
+  },
+  {
+    path: "/newbookmark",
+    name: "NewBookmark",
+    component: NewBookmarkPage,
+  },
+]; */
+const routes = [
+  {
+    path: "/",
+    name: "Home",
+    component: HomePage,
+  },
+  {
+    path: "/login",
+    name: "Login",
+    component: LoginPage,
+  },
+  {
+    path: "/register",
+    name: "Register",
+    component: RegisterPage,
+  },
+  {
+    path: "/account",
+    name: "Account",
+    component: AccountPage,
+  },
+  {
+    path: "/favorites",
+    name: "Favorites",
+    meta: {
+      componentName: "AppBookmarkListComponent",
+    },
+    component: AccountPage,
+  },
+  {
+    path: "/likes",
+    name: "Likes",
+    meta: {
+      componentName: "AppBookmarkListComponent",
+    },
+    component: AccountPage,
+  },
+  {
+    path: "/settings",
+    name: "Settings",
+    meta: {
+      componentName: "UserSettingsComponent",
+    },
+    component: AccountPage,
   },
   {
     path: "/newbookmark",
