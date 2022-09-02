@@ -27,7 +27,7 @@ server.listen(PORT, () => {
     }); */
     socket.on("NEW_BOOKMARK_EVENT", (bookmark) => {
       console.log("NEW_BOOKMARK_EVENT :>> ", bookmark);
-      io.emit("NEW_BOOKMARK_ADDED");
+      io.emit("NEW_BOOKMARK_ADDED", bookmark);
     });
   });
 });
