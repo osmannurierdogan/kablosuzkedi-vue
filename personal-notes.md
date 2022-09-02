@@ -160,3 +160,8 @@ addNewItem(){
 - context => It contains everything which Vuex has. It is an instance of Vuex
 - actions => dispatch
 - dispatch => triggers the actions.
+
+
+
+### Composition API
+- setup(){} runs before beforeCreated(){}, it dominates the data before its' creation.
