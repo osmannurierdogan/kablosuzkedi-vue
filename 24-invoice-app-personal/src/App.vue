@@ -10,6 +10,7 @@ const SaveInvoice = (invoice) => {
 const UpdateInvoice = (invoiceList) => {
   invoiceList.value = invoiceList;
 };
+
 provide("SaveInvoice", SaveInvoice);
 provide("UpdateInvoice", UpdateInvoice);
 provide("invoiceList", invoiceList);
