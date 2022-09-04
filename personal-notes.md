@@ -167,3 +167,6 @@ addNewItem(){
 - setup(){} runs before beforeCreated(){}, it dominates the data before its' creation.
 
 -Instead of beforeCreate() created() and data() we can use setup()
+
+-color #c6161d
+#gokhan@gkandemir.com
